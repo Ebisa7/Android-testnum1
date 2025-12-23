@@ -36,6 +36,9 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x gradlew
 
+      - name: Clean project
+        run: ./gradlew clean
+
       - name: Build debug APK
         run: ./gradlew assembleDebug --stacktrace
 

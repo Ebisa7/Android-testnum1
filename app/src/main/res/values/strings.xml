@@ -48,4 +48,5 @@
     <string name="search">Search</string>
     <string name="questions">questions</string>
     <string name="minutes">minutes</string>
+    <string name="button_click">Click Me</string>
 </resources>
