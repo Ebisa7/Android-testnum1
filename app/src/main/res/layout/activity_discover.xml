@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,8 +22,8 @@
                 android:id="@+id/toolbar_discover"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:title="Discover"
-                app:titleTextColor="@android:color/white" />
+                custom:title="Discover"
+                custom:titleTextColor="@android:color/white" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -32,17 +32,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            app:cardCornerRadius="28dp"
-            app:cardElevation="2dp">
+            custom:cardCornerRadius="28dp"
+            custom:cardElevation="2dp">
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="@android:color/transparent"
-                app:iconifiedByDefault="false"
-                app:queryBackground="@android:color/transparent"
-                app:searchIcon="@android:drawable/ic_menu_search" />
+                custom:iconifiedByDefault="false"
+                custom:queryBackground="@android:color/transparent"
+                custom:searchIcon="@android:drawable/ic_menu_search" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -78,20 +78,20 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:text="Science"
-                        app:chipIcon="@android:drawable/ic_menu_info_details" />
+                        custom:chipIcon="@android:drawable/ic_menu_info_details" />
 
                     <com.google.android.material.chip.Chip
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:text="History"
-                        app:chipIcon="@android:drawable/ic_menu_recent_history" />
+                        custom:chipIcon="@android:drawable/ic_menu_recent_history" />
 
                     <com.google.android.material.chip.Chip
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Math"
-                        app:chipIcon="@android:drawable/ic_menu_edit" />
+                        custom:chipIcon="@android:drawable/ic_menu_edit" />
 
                 </LinearLayout>
 
@@ -109,8 +109,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp">
+                    custom:cardCornerRadius="12dp"
+                    custom:cardElevation="2dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -149,8 +149,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp">
+                    custom:cardCornerRadius="12dp"
+                    custom:cardElevation="2dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -197,7 +197,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:menu="@menu/bottom_navigation_menu"
-        app:labelVisibilityMode="labeled" />
+        custom:menu="@menu/bottom_navigation_menu"
+        custom:labelVisibilityMode="labeled" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

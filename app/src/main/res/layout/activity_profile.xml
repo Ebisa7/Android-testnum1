@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,8 +22,8 @@
                 android:id="@+id/toolbar_profile"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:title="Profile"
-                app:titleTextColor="@android:color/white" />
+                custom:title="Profile"
+                custom:titleTextColor="@android:color/white" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -44,8 +44,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="24dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
+                    custom:cardCornerRadius="16dp"
+                    custom:cardElevation="4dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                             android:layout_marginBottom="16dp"
                             android:background="?attr/colorPrimary"
                             android:src="@android:drawable/ic_menu_myplaces"
-                            app:shapeAppearanceOverlay="@style/CircleImageView" />
+                            custom:shapeAppearanceOverlay="@style/CircleImageView" />
 
                         <!-- Profile Name -->
                         <TextView
@@ -121,8 +121,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp">
+                    custom:cardCornerRadius="12dp"
+                    custom:cardElevation="2dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -255,7 +255,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:menu="@menu/bottom_navigation_menu"
-        app:labelVisibilityMode="labeled" />
+        custom:menu="@menu/bottom_navigation_menu"
+        custom:labelVisibilityMode="labeled" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
