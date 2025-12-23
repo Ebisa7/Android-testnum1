@@ -116,6 +116,9 @@ dependencies {
     implementation(libs.timber)
     implementation(libs.androidx.test.espresso.idling.resources)
 
+    // Material Design Components
+    implementation(libs.material)
+
     // Architecture Components
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
