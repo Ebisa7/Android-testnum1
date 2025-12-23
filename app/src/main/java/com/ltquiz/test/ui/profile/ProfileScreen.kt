@@ -224,24 +224,24 @@ private fun SettingsItem(
     }
 }
 
-data class SettingsItem(
+data class SettingsItemData(
     val icon: ImageVector,
     val title: String,
     val onClick: () -> Unit
 )
 
 private val settingsItems = listOf(
-    SettingsItem(
+    SettingsItemData(
         icon = Icons.Default.Edit,
         title = "Edit Profile",
         onClick = { /* Handle edit profile */ }
     ),
-    SettingsItem(
+    SettingsItemData(
         icon = Icons.Default.Notifications,
         title = "Notifications",
         onClick = { /* Handle notifications */ }
     ),
-    SettingsItem(
+    SettingsItemData(
         icon = Icons.Default.Info,
         title = "About",
         onClick = { /* Handle about */ }
