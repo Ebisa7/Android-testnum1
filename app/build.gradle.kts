@@ -55,6 +55,12 @@ android {
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
             testProguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguardTest-rules.pro")
+            // Use debug signing for testing (replace with proper keystore for production)
+            signingConfig = signingConfigs.getByName("debug")
+            // Ensure compatibility
+            isDebuggable = false
+            isMinifyEnabled = true
+            isShrinkResources = true
         }
     }
 
