@@ -16,7 +16,7 @@
 
 package com.ltquiz.test.ui.chat
 
-import org.nanohttpd.protocols.http.NanoHTTPD
+import fi.iki.elonen.NanoHTTPD
 import java.util.concurrent.atomic.AtomicInteger
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
