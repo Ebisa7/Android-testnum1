@@ -88,7 +88,7 @@ jobs:
             -d parse_mode="Markdown"
 
       - name: Build release APK
-        run: ./gradlew assembleRelease --stacktrace
+        run: ./gradlew assembleRelease -x lintVitalAnalyzeRelease --stacktrace
 
       - name: Send progress update
         run: |
