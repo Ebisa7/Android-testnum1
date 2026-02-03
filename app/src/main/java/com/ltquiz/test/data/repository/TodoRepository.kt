@@ -78,4 +78,12 @@ class TodoRepository @Inject constructor(
             todoDao.findByTitle(query.trim())
         }
     }
+
+    suspend fun findExactByTitle(title: String): List<Todo> {
+        val trimmed = title.trim()
+        if (trimmed.isEmpty()) {
+            return emptyList()
+        }
+        return todoDao.findExactByTitle(trimmed)
+    }
 }

@@ -34,6 +34,9 @@ interface TodoDao {
     @Query("SELECT * FROM todos WHERE id = :id LIMIT 1")
     suspend fun getById(id: Long): Todo?
 
+    @Query("SELECT * FROM todos WHERE lower(title) = lower(:title)")
+    suspend fun findExactByTitle(title: String): List<Todo>
+
     @Query("SELECT * FROM todos WHERE title LIKE '%' || :query || '%' ORDER BY isCompleted ASC, updatedAt DESC")
     suspend fun findByTitle(query: String): List<Todo>
 

@@ -40,6 +40,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -71,6 +73,7 @@ fun TodoScreen(
     viewModel: TodoViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val snackbarHostState = remember { SnackbarHostState() }
     var newTodoTitle by rememberSaveable { mutableStateOf("") }
     var editingTodo by remember { mutableStateOf<Todo?>(null) }
     var editingTitle by rememberSaveable { mutableStateOf("") }
@@ -92,6 +95,7 @@ fun TodoScreen(
                 title = { Text("Todos") }
             )
         },
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         modifier = modifier.fillMaxSize()
     ) { innerPadding ->
         Column(
@@ -161,6 +165,12 @@ fun TodoScreen(
                     }
                 }
             }
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        viewModel.messages.collect { message ->
+            snackbarHostState.showSnackbar(message)
         }
     }
 

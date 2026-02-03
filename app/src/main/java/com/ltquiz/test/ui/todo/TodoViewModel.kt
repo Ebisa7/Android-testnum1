@@ -25,6 +25,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -49,6 +51,8 @@ class TodoViewModel @Inject constructor(
     private val filter = MutableStateFlow(TodoFilter.ALL)
     private val searchQuery = MutableStateFlow("")
     private var lastHandledActionKey: String? = null
+    private val _messages = MutableSharedFlow<String>(extraBufferCapacity = 1)
+    val messages = _messages.asSharedFlow()
 
     val uiState: StateFlow<TodoUiState> = combine(
         repository.todos,
@@ -147,22 +151,31 @@ class TodoViewModel @Inject constructor(
                 "edit" -> {
                     val newValue = newTitle?.trim()
                     if (!newValue.isNullOrBlank()) {
-                        val target = resolveTodo(id, title)
-                        if (target != null) {
-                            repository.updateTodo(target, newValue)
+                        when (val result = resolveTodo(id, title)) {
+                            is ResolveTodoResult.Found -> repository.updateTodo(result.todo, newValue)
+                            ResolveTodoResult.Ambiguous ->
+                                _messages.tryEmit("Multiple matching todos found. Be more specific.")
+                            ResolveTodoResult.NotFound ->
+                                _messages.tryEmit("No matching todo found.")
                         }
                     }
                 }
                 "delete" -> {
-                    val target = resolveTodo(id, title)
-                    if (target != null) {
-                        repository.deleteTodo(target)
+                    when (val result = resolveTodo(id, title)) {
+                        is ResolveTodoResult.Found -> repository.deleteTodo(result.todo)
+                        ResolveTodoResult.Ambiguous ->
+                            _messages.tryEmit("Multiple matching todos found. Be more specific.")
+                        ResolveTodoResult.NotFound ->
+                            _messages.tryEmit("No matching todo found.")
                     }
                 }
                 "complete" -> {
-                    val target = resolveTodo(id, title)
-                    if (target != null) {
-                        repository.toggleCompleted(target, true)
+                    when (val result = resolveTodo(id, title)) {
+                        is ResolveTodoResult.Found -> repository.toggleCompleted(result.todo, true)
+                        ResolveTodoResult.Ambiguous ->
+                            _messages.tryEmit("Multiple matching todos found. Be more specific.")
+                        ResolveTodoResult.NotFound ->
+                            _messages.tryEmit("No matching todo found.")
                     }
                 }
                 "list" -> {
@@ -183,16 +196,32 @@ class TodoViewModel @Inject constructor(
         }
     }
 
-    private suspend fun resolveTodo(id: String?, title: String?): Todo? {
+    private suspend fun resolveTodo(id: String?, title: String?): ResolveTodoResult {
         val parsedId = id?.toLongOrNull()
         if (parsedId != null) {
-            return repository.getById(parsedId)
+            val found = repository.getById(parsedId)
+            return if (found != null) ResolveTodoResult.Found(found) else ResolveTodoResult.NotFound
         }
+
         val query = title?.trim().orEmpty()
         if (query.isEmpty()) {
-            return null
+            return ResolveTodoResult.NotFound
         }
-        return repository.findByTitle(query).firstOrNull()
+
+        val exactMatches = repository.findExactByTitle(query)
+        if (exactMatches.size == 1) {
+            return ResolveTodoResult.Found(exactMatches.first())
+        }
+        if (exactMatches.size > 1) {
+            return ResolveTodoResult.Ambiguous
+        }
+
+        val containsMatches = repository.findByTitle(query)
+        return when (containsMatches.size) {
+            1 -> ResolveTodoResult.Found(containsMatches.first())
+            0 -> ResolveTodoResult.NotFound
+            else -> ResolveTodoResult.Ambiguous
+        }
     }
 
     private fun parseFilter(filterName: String?): TodoFilter? {
@@ -207,4 +236,10 @@ class TodoViewModel @Inject constructor(
             else -> null
         }
     }
+}
+
+private sealed interface ResolveTodoResult {
+    data class Found(val todo: Todo) : ResolveTodoResult
+    data object NotFound : ResolveTodoResult
+    data object Ambiguous : ResolveTodoResult
 }
