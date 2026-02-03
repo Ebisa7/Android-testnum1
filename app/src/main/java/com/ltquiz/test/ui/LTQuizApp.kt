@@ -21,7 +21,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Chat
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -38,6 +38,7 @@ import androidx.navigation.navDeepLink
 import com.ltquiz.test.ui.discover.DiscoverScreen
 import com.ltquiz.test.ui.home.HomeScreen
 import com.ltquiz.test.ui.profile.ProfileScreen
+import com.ltquiz.test.ui.chat.ChatScreen
 import com.ltquiz.test.ui.todo.TodoScreen
 
 /**
@@ -99,6 +100,9 @@ fun LTQuizApp() {
             composable("profile") {
                 ProfileScreen()
             }
+            composable("chat") {
+                ChatScreen()
+            }
             composable(
                 route = "todo?filter={filter}&query={query}&action={action}&id={id}&title={title}&newTitle={newTitle}",
                 arguments = listOf(
@@ -140,7 +144,7 @@ data class BottomNavItem(
 
 private val bottomNavItems = listOf(
     BottomNavItem("home", Icons.Default.Home, "Home"),
-    BottomNavItem("discover", Icons.Default.Search, "Discover"),
+    BottomNavItem("chat", Icons.Default.Chat, "Chat"),
     BottomNavItem("todo", Icons.Default.List, "Todo"),
     BottomNavItem("profile", Icons.Default.LocationOn, "Profile")
 )

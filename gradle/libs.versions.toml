@@ -54,6 +54,7 @@ retrofitKotlinxSerializationJson = "0.8.0"
 room = "2.6.1"
 spotless = "5.12.5"
 timber = "5.0.1"
+nanohttpd = "2.3.1"
 # @keep
 targetSdk = "35"
 truth = "1.4.4"
@@ -136,6 +137,7 @@ room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-testing = { group = "androidx.room", name = "room-testing", version.ref = "room" }
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+nanohttpd = { group = "org.nanohttpd", name = "nanohttpd", version.ref = "nanohttpd" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
