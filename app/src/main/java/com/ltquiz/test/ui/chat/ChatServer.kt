@@ -227,14 +227,14 @@ private object ChatWebPage {
               function appendMessage(msg) {
                 const wrap = document.createElement("div");
                 wrap.className = "msg";
-                wrap.innerHTML = `<div class="name">${msg.name}</div><div>${msg.text}</div>`;
+                wrap.innerHTML = `<div class="name">${'$'}{msg.name}</div><div>${'$'}{msg.text}</div>`;
                 messagesEl.appendChild(wrap);
                 messagesEl.scrollTop = messagesEl.scrollHeight;
               }
 
               async function poll() {
                 try {
-                  const res = await fetch(`/messages?since=${lastId}`);
+                  const res = await fetch(`/messages?since=${'$'}{lastId}`);
                   const data = await res.json();
                   for (const msg of data.messages) {
                     appendMessage(msg);
