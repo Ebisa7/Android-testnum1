@@ -9,7 +9,7 @@
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.ltquiz.test"
             android:targetClass="com.ltquiz.test.MainActivity">
-            <url-template android:value="ltquiz://todo?action=add&title={title}" />
+            <url-template android:value="ltquiz://todo?action=add&amp;title={title}" />
             <parameter android:name="thing.name" android:key="title" />
         </intent>
     </capability>
@@ -21,7 +21,7 @@
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.ltquiz.test"
             android:targetClass="com.ltquiz.test.MainActivity">
-            <url-template android:value="ltquiz://todo?action=search&query={query}" />
+            <url-template android:value="ltquiz://todo?action=search&amp;query={query}" />
             <parameter android:name="thing.name" android:key="query" />
         </intent>
     </capability>
@@ -33,7 +33,7 @@
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.ltquiz.test"
             android:targetClass="com.ltquiz.test.MainActivity">
-            <url-template android:value="ltquiz://todo?action=list&filter={status}" />
+            <url-template android:value="ltquiz://todo?action=list&amp;filter={status}" />
             <parameter
                 android:name="status"
                 android:key="status"
@@ -48,7 +48,7 @@
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.ltquiz.test"
             android:targetClass="com.ltquiz.test.MainActivity">
-            <url-template android:value="ltquiz://todo?action=complete&title={title}" />
+            <url-template android:value="ltquiz://todo?action=complete&amp;title={title}" />
             <parameter
                 android:name="taskName"
                 android:key="title"
@@ -63,7 +63,7 @@
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.ltquiz.test"
             android:targetClass="com.ltquiz.test.MainActivity">
-            <url-template android:value="ltquiz://todo?action=delete&title={title}" />
+            <url-template android:value="ltquiz://todo?action=delete&amp;title={title}" />
             <parameter
                 android:name="taskName"
                 android:key="title"
@@ -78,7 +78,7 @@
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.ltquiz.test"
             android:targetClass="com.ltquiz.test.MainActivity">
-            <url-template android:value="ltquiz://todo?action=edit&title={title}&newTitle={newTitle}" />
+            <url-template android:value="ltquiz://todo?action=edit&amp;title={title}&amp;newTitle={newTitle}" />
             <parameter
                 android:name="taskName"
                 android:key="title"
