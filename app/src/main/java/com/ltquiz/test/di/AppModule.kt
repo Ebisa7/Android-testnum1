@@ -16,11 +16,17 @@
 
 package com.ltquiz.test.di
 
+import android.content.Context
+import androidx.room.Room
 import com.ltquiz.test.data.repository.QuizRepository
+import com.ltquiz.test.data.local.TodoDao
+import com.ltquiz.test.data.local.TodoDatabase
+import com.ltquiz.test.data.repository.TodoRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
 /**
@@ -34,5 +40,28 @@ object AppModule {
     @Singleton
     fun provideQuizRepository(): QuizRepository {
         return QuizRepository()
+    }
+
+    @Provides
+    @Singleton
+    fun provideTodoDatabase(
+        @ApplicationContext context: Context
+    ): TodoDatabase {
+        return Room.databaseBuilder(
+            context,
+            TodoDatabase::class.java,
+            "todo_database"
+        ).build()
+    }
+
+    @Provides
+    fun provideTodoDao(database: TodoDatabase): TodoDao {
+        return database.todoDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideTodoRepository(todoDao: TodoDao): TodoRepository {
+        return TodoRepository(todoDao)
     }
 }

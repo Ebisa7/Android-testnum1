@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="todo_add_queries">
+        <item>add a todo $taskName</item>
+        <item>add task $taskName</item>
+        <item>create a todo $taskName</item>
+        <item>add $taskName to my todos</item>
+    </string-array>
+
+    <string-array name="todo_complete_queries">
+        <item>mark $taskName as done</item>
+        <item>complete $taskName</item>
+        <item>finish $taskName</item>
+    </string-array>
+
+    <string-array name="todo_delete_queries">
+        <item>delete $taskName</item>
+        <item>remove $taskName</item>
+        <item>trash $taskName</item>
+    </string-array>
+
+    <string-array name="todo_edit_queries">
+        <item>rename $taskName to $newTaskName</item>
+        <item>change $taskName to $newTaskName</item>
+        <item>edit $taskName to $newTaskName</item>
+    </string-array>
+
+    <string-array name="todo_list_queries">
+        <item>show my todos</item>
+        <item>list my tasks</item>
+        <item>show $status todos</item>
+        <item>list $status tasks</item>
+    </string-array>
+
+    <string-array name="todo_search_queries">
+        <item>find $taskName in my todos</item>
+        <item>search todos for $taskName</item>
+        <item>show tasks about $taskName</item>
+    </string-array>
+</resources>

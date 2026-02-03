@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <capability
+        android:name="actions.intent.CREATE_THING"
+        app:queryPatterns="@array/todo_add_queries">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.ltquiz.test"
+            android:targetClass="com.ltquiz.test.MainActivity">
+            <url-template android:value="ltquiz://todo?action=add&title={title}" />
+            <parameter android:name="thing.name" android:key="title" />
+        </intent>
+    </capability>
+
+    <capability
+        android:name="actions.intent.GET_THING"
+        app:queryPatterns="@array/todo_search_queries">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.ltquiz.test"
+            android:targetClass="com.ltquiz.test.MainActivity">
+            <url-template android:value="ltquiz://todo?action=search&query={query}" />
+            <parameter android:name="thing.name" android:key="query" />
+        </intent>
+    </capability>
+
+    <capability
+        android:name="com.ltquiz.test.intent.LIST_TODOS"
+        app:queryPatterns="@array/todo_list_queries">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.ltquiz.test"
+            android:targetClass="com.ltquiz.test.MainActivity">
+            <url-template android:value="ltquiz://todo?action=list&filter={status}" />
+            <parameter
+                android:name="status"
+                android:key="status"
+                android:mimeType="https://schema.org/Text" />
+        </intent>
+    </capability>
+
+    <capability
+        android:name="com.ltquiz.test.intent.COMPLETE_TODO"
+        app:queryPatterns="@array/todo_complete_queries">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.ltquiz.test"
+            android:targetClass="com.ltquiz.test.MainActivity">
+            <url-template android:value="ltquiz://todo?action=complete&title={title}" />
+            <parameter
+                android:name="taskName"
+                android:key="title"
+                android:mimeType="https://schema.org/Text" />
+        </intent>
+    </capability>
+
+    <capability
+        android:name="com.ltquiz.test.intent.DELETE_TODO"
+        app:queryPatterns="@array/todo_delete_queries">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.ltquiz.test"
+            android:targetClass="com.ltquiz.test.MainActivity">
+            <url-template android:value="ltquiz://todo?action=delete&title={title}" />
+            <parameter
+                android:name="taskName"
+                android:key="title"
+                android:mimeType="https://schema.org/Text" />
+        </intent>
+    </capability>
+
+    <capability
+        android:name="com.ltquiz.test.intent.EDIT_TODO"
+        app:queryPatterns="@array/todo_edit_queries">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.ltquiz.test"
+            android:targetClass="com.ltquiz.test.MainActivity">
+            <url-template android:value="ltquiz://todo?action=edit&title={title}&newTitle={newTitle}" />
+            <parameter
+                android:name="taskName"
+                android:key="title"
+                android:mimeType="https://schema.org/Text" />
+            <parameter
+                android:name="newTaskName"
+                android:key="newTitle"
+                android:mimeType="https://schema.org/Text" />
+        </intent>
+    </capability>
+</shortcuts>
